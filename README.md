@@ -8,7 +8,7 @@
 
 저는 Claude랑 Codex를 같이 쓰는데 — 한쪽(Claude **또는** Codex)에만 매몰되면, **같은 모델이 같은 걸 또 봐도 관점이 같아서** 그 모델이 못 잡는 버그·에러는 계속 못 잡더라고요. 그런데 **다른 회사 모델이, 다른 관점에서 보면** 보이는 버그·에러가 있었어요.
 
-원래는 **Claude ↔ Codex 둘만 교차검증**하는 스킬을 쓰고 있었는데([cross_verify](https://github.com/xixwxx/cross_verify)), 거기서 한 발 더 나가 **다관점(adversarial) + Codex + Claude의 의견을 한 번에 합쳐서 찾는** 스킬을 만든 게 이 `deep-verify`입니다.
+원래는 **Claude ↔ Codex 둘만 교차검증**하는 스킬을 쓰고 있었는데([cross_verify](https://github.com/AItinkerer0/cross_verify)), 거기서 한 발 더 나가 **다관점(adversarial) + Codex + Claude의 의견을 한 번에 합쳐서 찾는** 스킬을 만든 게 이 `deep-verify`입니다.
 
 개인적으로 편하게 쓰고 있어서 공개합니다.
 
@@ -22,6 +22,8 @@
 
 → 그리고 제일 중요한 규칙: **"체크할 게 없으면 절대 초록불(통과)로 안 칠한다."** **초록불 ≠ 참.** 결정적으로 확인된 것과 의견뿐인 것을 두 칸으로 나눠 보고합니다.
 
+레인들이 **각자 따로 보고만 하면 같은 사각지대를 공유**해서 놓치는 게 생기더라고요. 그래서 관점이 **엇갈리거나** 보안·데이터 같은 **치명 지적**이 나오면, 서로 근거(코드 위치·테스트·명세)를 대고 **짧게 반박을 주고받은 뒤** 정리합니다 — 말 잘하는 쪽이 아니라 근거 있는 쪽이 남게요. 그래도 안 갈리면 스킬이 억지로 결론 내지 않고 **제가 판단하도록** 남겨둡니다. 중요도도 "이 검증이 뭘 위한 건지(stake)"에 따라 갈리는 건 제 몫으로 넘겨요.
+
 ## 언제 쓰면 좋나
 
 모든 작업에 의심을 갖는 건 아니에요. 다만 **"뭔가 확인해야 직성이 풀리는 성격"**이라면 — 공들인 코드를 머지/배포하기 직전, 틀리면 곤란한 데 도움이 될 거예요. (오타·한 줄 같은 작은 수정엔 과합니다.)
@@ -29,7 +31,7 @@
 ## 설치
 
 ```bash
-git clone https://github.com/xixwxx/deep-verify ~/.claude/skills/deep-verify
+git clone https://github.com/AItinkerer0/deep-verify ~/.claude/skills/deep-verify
 ```
 → Claude Code 새 세션에서 **"딥검증"** 또는 **"deep-verify"**라고 하면 발동합니다.
 (또는 이 repo를 받아 `deep-verify` 폴더를 `~/.claude/skills/` 안에 두어도 됩니다.)
